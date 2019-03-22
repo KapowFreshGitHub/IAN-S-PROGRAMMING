@@ -15,12 +15,12 @@ Report how long the program took
 #DECLARE Beginning_Time: REAL
 #DECLARE End_Time: REAL
 #DECLARE Total: REAL
-#DECLARE counter_count: INTEGER
+
 import time
 
 input_num = int(input("Find primes up to what number: "))
-counter_count = 0
-Beginning_Time = time.time()
+
+Beginning_Time = time.clock()
 
 for counter in range(2, input_num + 1):
 #the counter is between the number 2 and between the number the user inputs e.g 2 to 5 (remember python does 1 number
@@ -42,11 +42,6 @@ for counter in range(2, input_num + 1):
     if isPrime == True:
         print(counter)
 
-for counter_count in range(2, input_num):
-    counter_count = input_num
-    counter_count = input_num + 1
-print("Here is the amount of prime numbers:", counter_count)
-
-End_Time = time.time()
+End_Time = time.clock()
 Total =  End_Time - Beginning_Time
 print("Here is how long it took:", Total)

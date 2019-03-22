@@ -1,4 +1,4 @@
-#DECLARE NAME: ARRAY[5] OF STRING
+#DECLARE name : ARRAY[0:6] OF STRING
 name = [0,0,0,0,0,0]
 
 no_names = 0

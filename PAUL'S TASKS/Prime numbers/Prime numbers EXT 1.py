@@ -20,7 +20,7 @@ import time
 
 input_num = int(input("Find primes up to what number: "))
 
-Beginning_Time = time.time()
+Beginning_Time = time.clock()
 
 for counter in range(2, input_num + 1):
 #the counter is between the number 2 and between the number the user inputs e.g 2 to 5 (remember python does 1 number
@@ -42,6 +42,6 @@ for counter in range(2, input_num + 1):
     if isPrime == True:
         print(counter)
 
-End_Time = time.time()
+End_Time = time.clock()
 Total =  End_Time - Beginning_Time
 print("Here is how long it took:", Total)

@@ -41,7 +41,7 @@ bTree[1].setrightpointer(5)
 
 bTree[2].setData('Kilmarnock')
 bTree[2].setleftpointer(4)
-bTree[2].setrightpointer(7)
+bTree[2].setrightpointer(0)
 
 bTree[3].setData('Aberdeen')
 bTree[3].setleftpointer(0)
@@ -81,21 +81,21 @@ def traverse(id):
         traverse(thisNode.getrightpointer())
 
 
-flag = False
+foundLocation = 0
 
 
 def searchNode(dataTarget, id):
-    global flag
+    global foundLocation
     # get the node using id
     thisNode = bTree[id]
     if thisNode.getData() == dataTarget:
         print('Item ', dataTarget, ' found at id ', id)
-        flag = True
+        foundLocation = id
     else:
         # if the leftpointer > 0
         if thisNode.getleftpointer() > 0:
             # call traverse with the new node id (leftpointer)
-            searchNode(dataTarget, thisNode.getleftpointer())
+            value = searchNode(dataTarget, thisNode.getleftpointer())
 
         # output node data item
         # print(thisNode.getData())
@@ -103,26 +103,35 @@ def searchNode(dataTarget, id):
         # if the rightpointer > 0
         if thisNode.getrightpointer() > 0:
             # call traverse with the new node id (rightpointer)
-            searchNode(dataTarget, thisNode.getrightpointer())
+            value = searchNode(dataTarget, thisNode.getrightpointer())
+    return foundLocation
 
 
-searchNode('Liverpool', rootPointer)
-if flag == False:
-    print('No match for Liverpool')
+thisID = searchNode('Liverpool', rootPointer)
+if thisID == 0:
+    print('No match found')
 
 
-def insertNode(newNode):
+def insertNode(newNode, parentID):
     bTree[freePointer] = newNode
 
     # Rangers node is no 1, left pointer links to Kilmarnock is no 2
     # We want to add 'Queens Park' between these two
 
     # We get Rangers node and take left pointer id - save it as temp
-    tempNode = bTree[1]
+    tempNode = bTree[parentID]
     tempID = tempNode.getleftpointer()
     # We change Rangers left pointer id to freePointer
     tempNode.setleftpointer(freePointer)
 
     # We add temp left pointer id as the left pointer id of newNode
     newNode.setleftpointer(tempID)
+
+
+newNode = bNode()
+newNode.setData('Queens Park')
+thisID = searchNode('Rangers', rootPointer)
+print(thisID)
+insertNode(newNode, thisID)
+traverse(rootPointer)
 
