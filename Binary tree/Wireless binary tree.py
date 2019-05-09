@@ -69,7 +69,7 @@ Freepointer = 9
 Rootpointer = 0
 #NewItem = "Travis"
 def insertNewItem(self,NewItem):
-    if FreePointer != --1:
+    if FreePointer != -1:
     #Then there is space in the list
     #slot data into free pointer spot
         NewNode= Freepointer
